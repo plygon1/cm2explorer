@@ -1,8 +1,17 @@
 local g3d = require("g3d")
+local renderer = require("renderer")
+local cm2 = require("OPTcm2Lua")
 local fps = 0
+local objects
 
 function love.load()
     print("Circuit Maker 2 Explorer")
+    local aSave = cm2.new(4,0)
+    aSave:addBlock(1,0,0,0)
+    aSave:addBlock(2,1,0,0)
+    aSave:addBlock(3,2,0,0)
+    aSave:addBlock(4,3,0,0)
+    objects = renderer.load(aSave)
 end
 function love.update(dt)
     fps = 1/dt
@@ -10,7 +19,7 @@ function love.update(dt)
 end
 function love.draw()
     love.graphics.clear(0.25,0.25,0.25)
-    cube:draw()
+    renderer.draw(objects)
     love.graphics.print("FPS: "..tostring(math.floor(fps)),0,0)
 end
 function love.mousemoved(x,y,dx,dy)
