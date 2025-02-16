@@ -8,13 +8,23 @@ local imgui = require "cimgui" -- cimgui is the folder containing the Lua module
 
 local l = {}
 
+l.save = nil
+
 l.load = function()
     imgui.love.Init() -- or imgui.love.Init("RGBA32") or imgui.love.Init("Alpha8")
 end
 
+l.requestReload = function() end -- set by the script requiring this
+
+local i = 0
+
 l.draw = function()
     -- example window
-    imgui.ShowDemoWindow()
+    if imgui.Button("add block") then
+        l.save:addBlock(1,i,5+i,0)
+        l.requestReload()
+        i=i+1
+    end
     
     -- code to render imgui
     imgui.Render()

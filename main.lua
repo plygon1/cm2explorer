@@ -2,7 +2,7 @@ local g3d = require("g3d")
 local renderer = require("renderer")
 local cm2 = require("OPTcm2Lua")
 local fps = 0
-local objects
+_G.objects = {}
 
 local imgui = require("imgui")
 
@@ -14,6 +14,9 @@ function love.load()
     aSave:addBlock(3,2,0,0)
     aSave:addBlock(4,3,0,0)
     objects = renderer.load(aSave)
+    imgui.requestReload = function() objects = renderer.load(aSave) end
+    imgui.objects = objects
+    imgui.save = aSave
     imgui.load()
 end
 function love.update(dt)
