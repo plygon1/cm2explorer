@@ -20,6 +20,7 @@ varying vec3 vertexNormal;
 varying vec4 vertexColor;
 
 vec4 position(mat4 transformProjection, vec4 vertexPosition) {
+    vertexPosition = vec4(vertexPosition.x,vertexPosition.y,vertexPosition.z,vertexPosition.a);
     // calculate the positions of the transformed coordinates on the screen
     // save each step of the process, as these are often useful when writing custom fragment shaders
     worldPosition = modelMatrix * vertexPosition;

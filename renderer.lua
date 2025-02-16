@@ -46,7 +46,7 @@ function renderer.load(save)
         local v = save._blocks[i]
         local ez = convert(v) --tfw you run out of variable name ideas
         if ez.good then
-            local mesh = g3d.newModel("assets/cube.obj", "assets/block.png", {ez.x*0.5,ez.y*0.5,ez.z*0.5},nil,{0.25,0.25,0.25})
+            local mesh = g3d.newModel("assets/cube.obj", "assets/block.png", {ez.x*0.5,ez.z*0.5,ez.y*0.5},nil,{0.25,0.25,0.25})
             table.insert(objects, {mesh=mesh,id=ez["id"]})
         end
     end
